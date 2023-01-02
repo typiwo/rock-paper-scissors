@@ -1,3 +1,28 @@
+// Load our buttons into JS
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+
+// Add event listeners to the buttons that will play a round when clicked
+rockButton.addEventListener('click', () => playRound('rock'));
+paperButton.addEventListener('click',() => playRound('paper'));
+scissorsButton.addEventListener('click', () => playRound('scissors'));
+
+// Load our results div
+const resultsDiv = document.querySelector('.results');
+
+// Load our game score div
+const scoreDiv = document.querySelector('.score');
+const playerScoreDiv = document.querySelector('#playerScore');
+const computerScoreDiv = document.querySelector('#computerScore');
+
+// Create variables to store player and computer score (will need to reset these when one reaches 5)
+let playerScore = 0;
+let computerScore = 0;
+
+
+
+
 // Create function that randomly returns 'Rock', 'Paper', or 'Scissors'.
 function getComputerChoice() {
     // Create list of possible choices
@@ -13,6 +38,7 @@ function getComputerChoice() {
 
 }
 
+
 // Create function that let's us play against the computer
 function playRound(playerChoice) {
     // Convert playerChoice to all uppercase for easy comparisons
@@ -21,83 +47,88 @@ function playRound(playerChoice) {
     // Obtain computer choice and convert to uppercase for easy comparisons
     let computerChoice = getComputerChoice().toUpperCase();
 
+    // Check if either player has reached maximum score, reset scores
+    if (playerScore == 5) {
+        playerScore = 0;
+        computerScore = 0;
+    }
+    else if (computerScore == 5) {
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+
     // Compare computerChoice to playerChoice
     if (playerChoice == "ROCK" && computerChoice == "ROCK") {
-        console.log("It's a tie! (ROCK vs. ROCK)");
-        return 0;
+        resultsDiv.textContent = "It's a tie! (ROCK vs. ROCK)";
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
     }
     else if (playerChoice == "ROCK" && computerChoice == "PAPER") {
-        console.log("You lose! PAPER beats ROCK!");
-        return -1;
+        resultsDiv.textContent = "You lose! PAPER beats ROCK!";
+        computerScore += 1;
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
+        checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "ROCK" && computerChoice == "SCISSORS") {
-        console.log("You win! ROCK beats SCISSORS!");
-        return 1;
+        resultsDiv.textContent = "You win! ROCK beats SCISSORS!";
+        playerScore += 1;
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
+        checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "PAPER" && computerChoice == "ROCK") {
-        console.log("You win! PAPER beats ROCK!");
-        return 1;
+        resultsDiv.textContent = "You win! PAPER beats ROCK!";
+        playerScore += 1;
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
+        checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "PAPER" && computerChoice == "PAPER") {
-        console.log("It's a tie! (PAPER vs. PAPER)");
-        return 0;
+        resultsDiv.textContent = "It's a tie! (PAPER vs. PAPER)";
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
     }
     else if (playerChoice == "PAPER" && computerChoice == "SCISSORS") {
-        console.log("You lose! SCISSORS beats PAPER!");
-        return -1;
+        resultsDiv.textContent = "You lose! SCISSORS beats PAPER!";
+        computerScore += 1;
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
+        checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "SCISSORS" && computerChoice == "ROCK") {
-        console.log("You lose! ROCK beats SCISSORS!");
-        return -1;
+        resultsDiv.textContent = "You lose! ROCK beats SCISSORS!";
+        computerScore += 1;
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
+        checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "SCISSORS" && computerChoice == "PAPER") {
-        console.log("You win! SCISSORS beats PAPER!");
-        return 1;
+        resultsDiv.textContent = "You win! SCISSORS beats PAPER!";
+        playerScore += 1;
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
+        checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "SCISSORS" && computerChoice == "SCISSORS") {
-        console.log("It's a tie! (SCISSORS vs. SCISSORS)");
-        return 0;
+        resultsDiv.textContent = "It's a tie! (SCISSORS vs. SCISSORS)";
+        playerScoreDiv.textContent = playerScore;
+        computerScoreDiv.textContent = computerScore;
     }
     else {
-        console.log("ERROR");
+        resultsDiv.textContent = "ERROR";
+        scoreDiv.textContent = "ERROR";
         return null;
     }
 }
 
-// Create function that:
-//  1. Plays 5 rounds
-//  2. Keeps score
-//  3. Reports winner/loser at the end
-function game() {
-    // Initialize score variable
-    let score = 0;
-
-    // Iterate 5 times
-    for (let i = 0; i < 5; i++) {
-        // Get player choice
-        let userInput = prompt("Choose ROCK, PAPER, or SCISSORS");
-
-        // Play round, determine winner (1 = win, 0 = tie, -1 = loss)
-        let roundResult = playRound(userInput);
-
-        // Update score
-        score += roundResult;
+// Function to check if player or computer has reached 5 points yet
+function checkForWinner(playerScore, computerScore) {
+    if (playerScore == 5) {
+        resultsDiv.textContent = "CONGRATULATIONS! You won the game! :)";
     }
-
-    // Determine if player wins, loses, or ties based on score
-    if (score > 0) {
-        console.log("You won the game!");
+    else if (computerScore == 5) {
+        resultsDiv.textContent = "Sorry, you lost! :(";
     }
-    else if (score < 0) {
-        console.log("You lost the game!")
-    }
-    else {
-        console.log("It's a tie!")
-    }
-}
-
-game()
-
-
-
-
+} 
