@@ -61,60 +61,60 @@ function playRound(playerChoice) {
     // Compare computerChoice to playerChoice
     if (playerChoice == "ROCK" && computerChoice == "ROCK") {
         resultsDiv.textContent = "It's a tie! (ROCK vs. ROCK)";
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
     }
     else if (playerChoice == "ROCK" && computerChoice == "PAPER") {
         resultsDiv.textContent = "You lose! PAPER beats ROCK!";
         computerScore += 1;
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
         checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "ROCK" && computerChoice == "SCISSORS") {
         resultsDiv.textContent = "You win! ROCK beats SCISSORS!";
         playerScore += 1;
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
         checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "PAPER" && computerChoice == "ROCK") {
         resultsDiv.textContent = "You win! PAPER beats ROCK!";
         playerScore += 1;
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
         checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "PAPER" && computerChoice == "PAPER") {
         resultsDiv.textContent = "It's a tie! (PAPER vs. PAPER)";
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
     }
     else if (playerChoice == "PAPER" && computerChoice == "SCISSORS") {
         resultsDiv.textContent = "You lose! SCISSORS beats PAPER!";
         computerScore += 1;
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
         checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "SCISSORS" && computerChoice == "ROCK") {
         resultsDiv.textContent = "You lose! ROCK beats SCISSORS!";
         computerScore += 1;
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
         checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "SCISSORS" && computerChoice == "PAPER") {
         resultsDiv.textContent = "You win! SCISSORS beats PAPER!";
         playerScore += 1;
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
         checkForWinner(playerScore, computerScore);
     }
     else if (playerChoice == "SCISSORS" && computerChoice == "SCISSORS") {
         resultsDiv.textContent = "It's a tie! (SCISSORS vs. SCISSORS)";
-        playerScoreDiv.textContent = playerScore;
-        computerScoreDiv.textContent = computerScore;
+        playerScoreDiv.textContent = `Player Score: ${playerScore}`;
+        computerScoreDiv.textContent = `Computer Score: ${computerScore}`;
     }
     else {
         resultsDiv.textContent = "ERROR";
@@ -132,3 +132,5 @@ function checkForWinner(playerScore, computerScore) {
         resultsDiv.textContent = "Sorry, you lost! :(";
     }
 } 
+
+
